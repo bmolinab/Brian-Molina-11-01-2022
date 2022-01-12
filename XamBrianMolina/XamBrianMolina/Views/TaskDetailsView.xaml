@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamBrianMolina.Views.TaskDetailsView">
+    <ContentPage.Content>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0">
+                <Label Text="Detalle de la Tarea"/>
+            </Frame>
+
+            <ScrollView Grid.Row="1">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Nombre"/>
+                    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding TaskVM.Name}"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Descripción"/>
+                    <Editor Grid.Row="1" Grid.Column="1" Text="{Binding TaskVM.Description}" IsSpellCheckEnabled="True" PlaceholderColor="Red"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Completada?"/>
+                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding TaskVM.IsCompleted}"/>
+
+                  
+                </Grid>
+            </ScrollView>
+
+            <StackLayout Grid.Row="2" 
+                         Orientation="Horizontal" 
+                         HorizontalOptions="Center">
+                <Button Text="Guardar"
+                        Command="{Binding SaveTaskCommand}"
+                        Margin="10,0"
+                        BackgroundColor="Blue"
+                        TextColor="White"
+                        CornerRadius="5"/>
+
+                <Button Text="Borrar"
+                        Command="{Binding DeleteTaskCommand}"
+                        Margin="10,0"
+                        BackgroundColor="Blue"
+                        TextColor="White"
+                        CornerRadius="5"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

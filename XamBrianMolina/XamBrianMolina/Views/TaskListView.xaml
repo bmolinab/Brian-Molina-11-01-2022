@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:XamBrianMolina.Views"
+             x:Class="XamBrianMolina.Views.TaskListView">
+    <ContentPage.Content>
+        <StackLayout Margin="5">
+            <Button Text="Agregar Nueva Tarea"
+                    Command="{Binding AddNewTaskCommand}"
+                    CommandParameter="{x:Type views:TaskDetailsView}"
+                    Margin="5"
+                    HeightRequest="40"
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    CornerRadius="5"/>
+
+            <CollectionView ItemsSource="{Binding Mytasks}"
+                            SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                            SelectionChangedCommandParameter="{x:Type views:TaskDetailsView}"
+                            SelectionMode="Single"
+                            EmptyView="No hay tareas registradas"
+                            Margin="5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="Blue"
+                                   Text="{Binding Name, StringFormat='Nombre: {0}'}"/>
+
+                            <Label Grid.Row="1"
+                                   FontAttributes="Italic"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="Orange"
+                                   Text="{Binding Description, StringFormat='Descripcion: {0}'}"/>
+
+                            <Label Grid.Row="2"
+                                   FontAttributes="Italic"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="DarkGreen"
+                                   Text="{Binding IsCompleted, StringFormat='Completa: {0}'}"/>
+
+                           
+
+                            <BoxView Grid.Row="4" HeightRequest="1" Color="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
